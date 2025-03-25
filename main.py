@@ -1428,7 +1428,7 @@ async def moni_handler(client: Client, m: Message):
     await m.reply_text("🔰Done Boss🔰")
 
 # 8. /moni - Moni handler for premium users
-@bot.on_message(filters.command("moni"))
+@bot.on_message(filters.command("rajesh"))
 async def moni_handler(client: Client, m: Message):
     channels = read_channels_data()
     if str(m.chat.id) not in channels:
