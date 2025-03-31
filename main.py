@@ -136,7 +136,7 @@ async def add_channel(client, message: Message):
     if not any(user[0] == user_id for user in subscription_data):
         await message.reply_text(
             "🚫 **You are not a premium user.**\n\n"
-            "🔑 Please contact my admin at: **@SanjayKagra86** for subscription details."
+            "🔑 Please contact my admin at: **@john_rockey** for subscription details."
         )
         return
 
@@ -226,7 +226,7 @@ async def text_to_txt(client, message: Message):
     if not any(user[0] == user_id for user in subscription_data):
         await message.reply_text(
             "🚫 **You are not a premium user.**\n\n"
-            "🔑 Please contact my admin at: **@SanjayKagra86** for subscription details."
+            "🔑 Please contact my admin at: **@john_rockey** for subscription details."
         )
         return
 
@@ -302,7 +302,7 @@ async def edit_txt(client, message: Message):
     if not any(user[0] == user_id for user in subscription_data):
         await message.reply_text(
             "🚫 **You are not a premium user.**\n\n"
-            "🔑 Please contact my admin at: **@SanjayKagra86** for subscription details."
+            "🔑 Please contact my admin at: **@john_rockey** for subscription details."
         )
         return
 
@@ -490,7 +490,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
     if not any(user[0] == user_id for user in subscription_data):
         await message.reply_text(
             "🚫 **You are not a premium user.**\n\n"
-            "🔑 Please contact my admin at: **@SanjayKagra86** for subscription details."
+            "🔑 Please contact my admin at: **@john_rockey** for subscription details."
         )
         return
 
@@ -602,7 +602,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
     if not any(user[0] == user_id for user in subscription_data):
         await message.reply_text(
             "🚫 **You are not a premium user.**\n\n"
-            "🔑 Please contact my admin at: **@SanjayKagra86** for subscription details."
+            "🔑 Please contact my admin at: **@john_rockey** for subscription details."
         )
         return
 
@@ -645,7 +645,7 @@ async def start_command(bot: Client, message: Message):
         "➠ **Can Extract Videos & PDFs From Your Text File and Upload to Telegram!**\n"
         "➠ **For Guide Use Command /guide 📖**\n\n"
         "➠ **Use /STRANGER Command to Download From TXT File** 📄\n\n"
-        "➠ **𝐌𝐚𝐝𝐞 𝐁𝐲:** @SanjayKagra86🩷"
+        "➠ **𝐌𝐚𝐝𝐞 𝐁𝐲:** @john_rockey"
     )
 
     # Send the image with caption and buttons
@@ -661,7 +661,7 @@ async def start_command(bot: Client, message: Message):
 
 # Retrieve the cookies file path from the environment variable or set the default path
 COOKIES_FILE_PATH = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
-ADMIN_ID = 6126688051  # Admin ID for restricting the command
+ADMIN_ID = 7621154046  # Admin ID for restricting the command
 
 @bot.on_message(filters.command("cookies") & filters.private)
 async def cookies_handler(client: Client, m: Message):
@@ -709,7 +709,7 @@ async def cookies_handler(client: Client, m: Message):
 
 # Retrieve the cookies file path from the environment variable or set the default path
 INSTAGRAM_COOKIES_PATH = os.getenv("INSTAGRAM_COOKIES_PATH", "instagram_cookies.txt")
-ADMIN_ID = 6126688051  # Admin ID for restricting the command
+ADMIN_ID = 7621154046  # Admin ID for restricting the command
 
 @bot.on_message(filters.command("instacookies") & filters.private)
 async def instacookies_handler(client: Client, m: Message):
@@ -765,7 +765,7 @@ SUBSCRIPTION_FILE = "subscription_data.txt"
 CHANNELS_FILE = "channels_data.json"
 
 # Admin ID
-ADMIN_ID = 6126688051
+ADMIN_ID = 7621154046
 
 # Function to read subscription data
 def read_subscription_data():
@@ -903,7 +903,7 @@ async def my_plan(client, message: Message):
     else:
         await message.reply_text("❌ **You are not a premium user.**\nPlease upgrade your plan. 💳")
 
-ADMIN_ID = 6126688051
+ADMIN_ID = 7621154046
 
 # Helper function to check admin privilege
 def is_admin(user_id):
@@ -1045,19 +1045,12 @@ async def stop_handler(client, message: Message):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 # 7. /moni - Moni handler for premium users
-@bot.on_message(filters.command("moni"))
+@bot.on_message(filters.command("upload"))
 async def moni_handler(client: Client, m: Message):
-    if m.chat.type == "private":
-        user_id = str(m.from_user.id)
-        subscription_data = read_subscription_data()
-        if not any(user[0] == user_id for user in subscription_data):
-            await m.reply_text("❌ **You are not a premium user.**\nPlease upgrade your subscription! 💎")
-            return
-    else:
-        channels = read_channels_data()
-        if str(m.chat.id) not in channels:
-            await m.reply_text("❗ **You are not a premium user.**\nSubscribe now for exclusive access! 🚀")
-            return
+    channels = read_channels_data()
+    if str(m.chat.id) not in channels:
+        await m.reply_text("❗ **You are not a premium user.**\nSubscribe now for exclusive access! 🚀")
+        return
 
     editable = await m.reply_text('💾 **To Download a .txt File, Send Here ⏍**')      
 
@@ -1104,11 +1097,11 @@ async def moni_handler(client: Client, m: Message):
     await input0.delete(True)               
 
     # This is where you would set up your bot and connect the handle_command function      
-    await editable.edit("**Enter Batch Name or send d for grabing from text filename.**")
+    await editable.edit("**Enter Batch Name or send 1 for grabing from text filename.**")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
-    if raw_text0 == 'd':
+    if raw_text0 == '1':
         b_name = file_name
     else:
         b_name = raw_text0
@@ -1137,7 +1130,7 @@ async def moni_handler(client: Client, m: Message):
     
     
 
-    await editable.edit("**Enter Your Name or send `de` for use default**")
+    await editable.edit("**Enter Your Name or send `1` for use default**")
 
     # Listen for the user's response
     input3: Message = await bot.listen(editable.chat.id)
@@ -1150,14 +1143,14 @@ async def moni_handler(client: Client, m: Message):
 
     # Default credit message
     credit = "️ ⁪⁬⁮⁮⁮"
-    if raw_text3 == 'de':
-        CR = '@SanjayKagra86🩷'
+    if raw_text3 == '1':
+        CR = '@john_rockey'
     elif raw_text3:
         CR = raw_text3
     else:
         CR = credit
    
-    await editable.edit("🌄 Now send the Thumb url if don't want thumbnail send no ")
+    await editable.edit("🌄 Now send the Thumb url if don't want thumbnail send No ")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
@@ -1168,7 +1161,7 @@ async def moni_handler(client: Client, m: Message):
         getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
         thumb = "thumb.jpg"
     else:
-        thumb == "no"
+        thumb == "No"
 
     if len(links) == 1:
         count = 1
@@ -1267,10 +1260,10 @@ async def moni_handler(client: Client, m: Message):
         
                 
             try:                
-                cc = f'**🎥 VIDEO ID: {str(count).zfill(3)}.\n\n📄 Title: {name1} {res} ⎳𝓸𝓿𝓮❥❤️━━╬٨ﮩSanju٨ـﮩـ Love❥.mkv\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
-                cc1 = f'**📁 FILE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1} 𝄟✮͢🦋⃟≛⃝m✮⃝oni.pdf \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
-                cc2 = f'**📁 FILE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1} 𝄟✮͢🦋⃟≛⃝m✮⃝oni.html \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
-                cc3 = f'**📷 IMAGE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1} 𝄟✮͢🦋⃟≛⃝m✮⃝oni.png \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
+                cc = f'**🎥 VIDEO ID: {str(count).zfill(3)}.\n\n📄 Title: {name1}.mkv\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
+                cc1 = f'**📁 FILE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1}.pdf \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
+                cc2 = f'**📁 FILE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1}.html \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
+                cc3 = f'**📷 IMAGE ID: {str(count).zfill(3)}.\n\n📄 Title: {name1}.png \n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By : {CR}**'
                                                  
                 if "drive" in url:
                     try:
@@ -1408,7 +1401,7 @@ async def moni_handler(client: Client, m: Message):
                     Show = f"""❊⟱ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ⟱❊ »\n\n📄 **Title:** `{name}`\n⌨ **Quality:** {raw_text2}\n"""
                 
                     # Enhanced prog message
-                    prog = await m.reply_text(f"""**Downloading Video...**\n\n📄 **Title:** `{name}`\n⌨ **Quality:** {raw_text2}\n\n⚡ **Bot Made By 𝄟✮͢🦋⃟≛⃝m✮⃝oni🩷**""")
+                    prog = await m.reply_text(f"""**Downloading Video...**\n\n📄 **Title:** `{name}`\n⌨ **Quality:** {raw_text2}\n\n⚡ **Bot Made By ꧁ 𝐉𝐨𝐡𝐧 𝐖𝐢𝐜𝐤 ꧂ **""")
                
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
