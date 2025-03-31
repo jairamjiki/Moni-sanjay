@@ -1029,17 +1029,10 @@ async def remove_all_channels(client, message: Message):
 # 6. /stop - Stop the bot process
 @bot.on_message(filters.command("stop"))
 async def stop_handler(client, message: Message):
-    if message.chat.type == "private":
-        user_id = str(message.from_user.id)
-        subscription_data = read_subscription_data()
-        if not any(user[0] == user_id for user in subscription_data):
-            await message.reply_text("😔 **You are not a premium user.**\nPlease subscribe to get access! 🔒")
-            return
-    else:
-        channels = read_channels_data()
-        if str(message.chat.id) not in channels:
-            await message.reply_text("🚫 **You are not a premium user.**\nSubscribe to unlock all features! ✨")
-            return
+    channels = read_channels_data()
+    if str(message.chat.id) not in channels:
+        await message.reply_text("🚫 **You are not a premium user.**\nSubscribe to unlock all features! ✨")
+        return
 
     await message.reply_text("♦️ **Bot Stopped.** Restarting now...", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
